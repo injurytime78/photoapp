@@ -5,7 +5,7 @@ class PictureUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
-  
+
   include CarrierWave::MiniMagick
   process resize_to_limit: [300, 300]
 
@@ -14,7 +14,7 @@ class PictureUploader < CarrierWave::Uploader::Base
   # storage :fog
   if Rails.env.production?
     storage :fog
-   else
+  else
     storage :file
   end
 
@@ -55,12 +55,5 @@ class PictureUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
-  validate :picture_size
-  
-  private
-  def picture_size
-    if picture.size > 5.megabytes
-      errors.add(:picture, "should be less than 5MB")
-    end
-  end
+
 end
